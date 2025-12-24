@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<title>আমার ব্লগ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f3f6fb;
+  --card:#ffffff;
+  --primary:#2563eb;
+  --secondary:#16a34a;
+  --text:#1f2937;
+  --muted:#6b7280;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Poppins,sans-serif;
+  background:linear-gradient(180deg,#eef3ff,var(--bg));
+  color:var(--text);
+}
+
+/* ===== Navbar ===== */
+.navbar{
+  background:#fff;
+  box-shadow:0 6px 20px rgba(0,0,0,.06);
+}
+.nav-inner{
+  max-width:1100px;
+  margin:auto;
+  padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logo{font-weight:700;font-size:20px}
+
+/* ===== Hero ===== */
+.hero{
+  text-align:center;
+  padding:50px 20px 30px;
+}
+.hero h1{font-size:38px;margin-bottom:8px}
+.hero p{color:var(--muted)}
+
+/* ===== Search & Filter ===== */
+.tools{
+  max-width:1100px;
+  margin:0 auto 40px;
+  padding:0 20px;
+}
+.search-box{
+  width:100%;
+  padding:14px 18px;
+  border-radius:12px;
+  border:1px solid #e5e7eb;
+  font-size:15px;
+  margin-bottom:18px;
+}
+.filters{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.filter-btn{
+  padding:8px 16px;
+  border-radius:999px;
+  border:1px solid #e5e7eb;
+  background:#fff;
+  cursor:pointer;
+  font-size:13px;
+}
+.filter-btn.active,
+.filter-btn:hover{
+  background:var(--primary);
+  color:#fff;
+  border-color:var(--primary);
+}
+
+/* ===== Posts ===== */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:0 20px 60px;
+}
+.posts{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:30px;
+}
+.card{
+  background:var(--card);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 15px 35px rgba(0,0,0,.08);
+  transition:.3s;
+}
+.card:hover{transform:translateY(-8px)}
+.thumb{
+  height:150px;
+  background:linear-gradient(135deg,#93c5fd,#2563eb);
+}
+.card-content{padding:22px}
+.badge{
+  display:inline-block;
+  background:#eef4ff;
+  color:var(--primary);
+  padding:5px 12px;
+  font-size:12px;
+  border-radius:999px;
+  margin-bottom:10px;
+}
+.card h2{margin:0 0 8px;font-size:20px}
+.meta{font-size:13px;color:var(--muted)}
+.card p{font-size:14px;line-height:1.6}
+.read-more{
+  display:inline-block;
+  margin-top:14px;
+  font-weight:600;
+  color:var(--primary);
+  text-decoration:none;
+}
+
+/* ===== Comments ===== */
+.comments{
+  background:#f9fafb;
+  padding:70px 20px;
+}
+.comment-box{
+  max-width:800px;
+  margin:auto;
+  background:#fff;
+  padding:35px;
+  border-radius:18px;
+  box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+.comment-box h2{
+  margin-bottom:20px;
+}
+#commentForm{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-bottom:30px;
+}
+#commentForm input,
+#commentForm textarea{
+  padding:12px 14px;
+  border-radius:10px;
+  border:1px solid #e5e7eb;
+  font-family:inherit;
+}
+#commentForm textarea{min-height:100px}
+#commentForm button{
+  align-self:flex-start;
+  padding:10px 22px;
+  border:none;
+  border-radius:10px;
+  background:var(--primary);
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+}
+.comment{
+  background:#f3f6fb;
+  padding:15px 18px;
+  border-radius:12px;
+  margin-bottom:15px;
+}
+.comment strong{
+  display:block;
+  margin-bottom:6px;
+}
+.comment small{
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* ===== Footer ===== */
+footer{
+  text-align:center;
+  padding:25px;
+  background:#fff;
+  color:var(--muted);
+  font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="logo">আমার ব্লগ</div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>চিন্তা, প্রযুক্তি ও ভবিষ্যৎ</h1>
+  <p>জ্ঞান ও আধুনিক ভাবনার ব্লগ</p>
+</section>
+
+<!-- Search & Filter -->
+<div class="tools">
+  <input type="text" id="search" class="search-box" placeholder="Search articles...">
+
+  <div class="filters">
+    <button class="filter-btn active" data-category="all">All</button>
+    <button class="filter-btn" data-category="technology">Technology</button>
+    <button class="filter-btn" data-category="education">Education</button>
+    <button class="filter-btn" data-category="ai">AI</button>
+  </div>
+</div>
+
+<!-- Posts -->
+<main class="container">
+  <section class="posts">
+
+    <article class="card" data-category="technology">
+      <div class="thumb"></div>
+      <div class="card-content">
+        <span class="badge">Technology</span>
+        <h2>প্রযুক্তি আমাদের জীবনে</h2>
+        <div class="meta">২২ সেপ্টেম্বর ২০২৫</div>
+        <p>আধুনিক প্রযুক্তি আমাদের জীবনকে সহজ করেছে...</p>
+        <a href="articles/technology.html" class="read-more">Read Article →</a>
+      </div>
+    </article>
+
+    <article class="card" data-category="education">
+      <div class="thumb"></div>
+      <div class="card-content">
+        <span class="badge">Education</span>
+        <h2>ডিজিটাল শিক্ষা ব্যবস্থার ভবিষ্যৎ</h2>
+        <div class="meta">১৫ সেপ্টেম্বর ২০২৫</div>
+        <p>ডিজিটাল শিক্ষা শেখার ধরণ বদলে দিচ্ছে...</p>
+        <a href="articles/digital-education.html" class="read-more">Read Article →</a>
+      </div>
+    </article>
+
+    <article class="card" data-category="ai">
+      <div class="thumb"></div>
+      <div class="card-content">
+        <span class="badge">AI</span>
+        <h2>কৃত্রিম বুদ্ধিমত্তা ও আগামীর বিশ্ব</h2>
+        <div class="meta">১০ সেপ্টেম্বর ২০২৫</div>
+        <p>AI ভবিষ্যতের কাজ ও জীবনধারা বদলে দেবে...</p>
+        <a href="articles/future-ai.html" class="read-more">Read Article →</a>
+      </div>
+    </article>
+
+  </section>
+</main>
+
+<!-- Comment Section -->
+<section class="comments">
+  <div class="comment-box">
+    <h2>মন্তব্য</h2>
+
+    <form id="commentForm">
+      <input type="text" id="name" placeholder="আপনার নাম" required>
+      <textarea id="comment" placeholder="আপনার মন্তব্য লিখুন..." required></textarea>
+      <button type="submit">Post Comment</button>
+    </form>
+
+    <div id="commentList"></div>
+  </div>
+</section>
+
+<footer>
+  © ২০২৫ • আমার ব্লগ
+</footer>
+
+<script>
+/* ===== Search & Filter ===== */
+const searchInput = document.getElementById("search");
+const filterBtns = document.querySelectorAll(".filter-btn");
+const cards = document.querySelectorAll(".card");
+
+let activeCategory = "all";
+
+searchInput.addEventListener("input", filterPosts);
+
+filterBtns.forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    filterBtns.forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    activeCategory = btn.dataset.category;
+    filterPosts();
+  });
+});
+
+function filterPosts(){
+  const text = searchInput.value.toLowerCase();
+  cards.forEach(card=>{
+    const title = card.querySelector("h2").innerText.toLowerCase();
+    const body = card.querySelector("p").innerText.toLowerCase();
+    const category = card.dataset.category;
+
+    const matchText = title.includes(text) || body.includes(text);
+    const matchCat = activeCategory === "all" || category === activeCategory;
+
+    card.style.display = matchText && matchCat ? "block" : "none";
+  });
+}
+
+/* ===== Comment System ===== */
+const commentForm = document.getElementById("commentForm");
+const commentList = document.getElementById("commentList");
+const STORAGE_KEY = "homepage_comments";
+
+function loadComments(){
+  const comments = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  commentList.innerHTML = "";
+  comments.forEach(c=>{
+    const div = document.createElement("div");
+    div.className = "comment";
+    div.innerHTML = `
+      <strong>${c.name}</strong>
+      <small>${c.date}</small>
+      <p>${c.text}</p>
+    `;
+    commentList.appendChild(div);
+  });
+}
+
+commentForm.addEventListener("submit", e=>{
+  e.preventDefault();
+  const name = document.getElementById("name").value.trim();
+  const text = document.getElementById("comment").value.trim();
+  if(!name || !text) return;
+
+  const comments = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  comments.unshift({
+    name,
+    text,
+    date: new Date().toLocaleString("bn-BD")
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
+  commentForm.reset();
+  loadComments();
+});
+
+loadComments();
+</script>
+
+</body>
+</html>
